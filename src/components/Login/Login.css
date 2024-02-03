@@ -1,0 +1,29 @@
+.leftArea {
+    position: relative;
+    background-color: #605BFF;
+    clip-path: polygon(0 0, 100% 0, 88% 100%, 0% 100%);
+}
+
+svg:hover {
+    cursor: pointer;
+}
+
+button {
+    background: #F8FAFF;
+}
+
+.underline-on-hover:hover {
+    text-decoration: underline;
+}
+
+.leftArea::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+    z-index: -1;
+    transform: skewX(-20deg);
+}
