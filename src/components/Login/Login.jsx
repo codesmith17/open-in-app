@@ -4,26 +4,50 @@ import Logo from "./Logo";
 import "./Login.css";
 import Apple from "./Apple";
 import Google from "./Google";
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const handleUsername = (Event) => {
-    setUsername(Event.target.value);
-  };
-  const handlePassword = (Event) => {
-    setPassword(Event.target.value);
-  };
-  const handleSignIn = () => {
-    // Check username and password
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
+  const handleUsername = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSignIn = () => {
+    // Check if fields are empty
+    if (username === "") {
+      alert("Please enter your email address.");
+      return;
+    }
+
+    if (password === "") {
+      setPasswordError("Please enter your password.");
+      return;
+    }
+
+    // Check username and password
     if (username === "johndoe@gmail.com" && password === "123") {
       // Navigate to the dashboard route
-      history.push("/dashboard");
+      // You can use history.push("/dashboard") if you are using react-router-dom
     } else {
+      // Display error for invalid credentials
+      setUsernameError("Invalid username or password.");
+      setPasswordError("Invalid username or password.");
     }
   };
+
+  // Use useEffect to log the updated usernameError
+  useEffect(() => {
+    console.log(usernameError);
+  }, [usernameError]);
 
   return (
     <>
@@ -130,16 +154,27 @@ const Login = () => {
                 <input
                   type="email"
                   onChange={handleUsername}
-                  className="bg-[#9d8f8f] rounded-md my-2 p-2 w-full"
+                  className={`bg-[#9d8f8f] rounded-md my-2 p-2 w-full ${
+                    usernameError && "border-red-500"
+                  }`}
                 />
+                {usernameError && (
+                  <p className="text-red-500 text-sm">{usernameError}</p>
+                )}
+
                 <br />
                 <label htmlFor="passwordInput">Password</label>
                 <br />
                 <input
                   type="password"
                   onChange={handlePassword}
-                  className="bg-[#9d8f8f] rounded-md my-2 p-2 w-full"
+                  className={`bg-[#9d8f8f] rounded-md my-2 p-2 w-full ${
+                    passwordError && "border-red-500"
+                  }`}
                 />
+                {passwordError && (
+                  <p className="text-red-500 text-sm">{passwordError}</p>
+                )}
                 <a
                   href="#"
                   className="text-blue-600 underline-on-hover  my-4 block w-fit"
@@ -148,25 +183,19 @@ const Login = () => {
                 >
                   Forgot password?
                 </a>
-                {username === "" && password === "" ? (
-                  <Link to="/dashboard">
-                    <button
-                      onClick={handleSignIn}
-                      className="rounded-md my-8 px-4 w-full py-3 transition-all text-white font-semibold duration-5000 hover:bg-[#343275] bg-[#605BFF]"
-                    >
-                      Sign in
-                    </button>
-                  </Link>
-                ) : (
-                  <Link to="/">
-                    <button
-                      onClick={handleSignIn}
-                      className="rounded-md my-8 px-4 w-full py-3 transition-all text-white font-semibold duration-5000 hover:bg-[#343275] bg-[#605BFF]"
-                    >
-                      Sign in
-                    </button>
-                  </Link>
-                )}
+                <Link to="/dashboard">
+                  <button
+                    onClick={handleSignIn}
+                    disabled={!username || !password}
+                    className={`rounded-md my-8 px-4 w-full py-3 transition-all font-semibold ${
+                      !username || !password
+                        ? "text-gray-500 bg-gray-300 cursor-not-allowed"
+                        : "text-white hover:bg-[#343275] bg-[#605BFF] hover:cursor-pointer"
+                    }`}
+                  >
+                    Sign in
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
