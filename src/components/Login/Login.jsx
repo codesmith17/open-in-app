@@ -45,8 +45,6 @@ const Login = () => {
 
     // Check username and password
     if (username === "johndoe@gmail.com" && password === "123") {
-      // Navigate to the dashboard route
-      // You can use history.push("/dashboard") if you are using react-router-dom
     } else {
       // Display error for invalid credentials
       setUsernameError("Invalid username or password.");
@@ -60,11 +58,10 @@ const Login = () => {
   }, [usernameError]);
   return (
     <>
-      <div className="block md:hidden">
+      <div className="block md:hidden overflow-hidden">
         <nav className="h-[100px] bg-[#605bff] flex items-center justify-between">
           <div className="flex items-center">
             <div className="my-6 pr-4">
-              {/* Assuming Logo is an SVG component */}
               <Logo />
             </div>
             <p className="text-white text-lg font-bold">Base</p>
@@ -72,7 +69,7 @@ const Login = () => {
         </nav>
       </div>
       <div className="flex flex-col md:flex-row bg-[#f8faff]">
-        <div className="leftArea hidden md:block relative bg-[#605BFF] h-screen w-[50%]">
+        <div className="leftArea hidden md:block relative bg-[#605BFF] h-screen w-[50%] overflow-hidden">
           <div title="OpenInApp" className="logo m-11  w-fit">
             <Logo></Logo>
           </div>
@@ -147,8 +144,8 @@ const Login = () => {
         <div className="flex items-center bg-[#f8faff] justify-center h-screen mx-auto border-spacing-8 w-[80%] lg:w-[50%] rounded-lg">
           <div className="rightArea relative   p-8">
             <div>
-              <h4 className="text-3xl font-bold mb-4">Sign In</h4>
-              <p className="">Sign in to your account</p>
+              <h4 className="text-3xl font-bold mb-4 px-4">Sign In</h4>
+              <p className=" px-4">Sign in to your account</p>
               <div className="flex flex-row w-full justify-center">
                 <button className="mx-auto my-2">
                   <Google></Google>

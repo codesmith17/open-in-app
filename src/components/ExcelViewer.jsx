@@ -42,17 +42,27 @@ const ExcelViewer = () => {
     setSelectedTags(updatedTags);
   };
 
-  const handleUpload = () => {
-    console.log("Uploading data:", excelData);
+  const handleRemoveFile = () => {
+    setExcelData(null);
+    setSelectedTags([]);
+    setShowData(false);
   };
 
   return (
     <div
-      {...getRootProps()}
       className={`container mx-auto p-6 dropzone ${
         isDragActive ? "active" : ""
-      }`}
+      } border-dotted border-2 border-[#746fff] relative`}
     >
+      {excelData && (
+        <button
+          onClick={handleRemoveFile}
+          className="absolute top-2 right-2 text-red-600 hover:text-red-800 cursor-pointer"
+        >
+          Remove
+        </button>
+      )}
+
       <div className="max-w-md mx-auto mb-8 text-center">
         <img
           src="https://download.logo.wine/logo/Microsoft_Excel/Microsoft_Excel-Logo.wine.png"
