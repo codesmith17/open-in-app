@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useDropzone } from "react-dropzone";
 import * as XLSX from "xlsx";
 
 const ExcelViewer = () => {
@@ -7,33 +6,40 @@ const ExcelViewer = () => {
   const [selectedTags, setSelectedTags] = useState([]);
   const [showData, setShowData] = useState(false);
 
-  const onDrop = (acceptedFiles) => {
-    const file = acceptedFiles[0];
+  const handleDrop = (event) => {
+    event.preventDefault();
 
-    const reader = new FileReader();
-
-    reader.onload = (e) => {
-      const data = e.target.result;
-      const workbook = XLSX.read(data, { type: "binary" });
-      const sheetName = workbook.SheetNames[0];
-      const sheet = workbook.Sheets[sheetName];
-      const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-
-      // Initialize selected tags array with empty strings
-      const initialTags = Array(jsonData.length).fill("");
-      setSelectedTags(initialTags);
-
-      setExcelData(jsonData);
-      setShowData(true);
-    };
-
-    reader.readAsBinaryString(file);
+    const file = event.dataTransfer.files[0];
+    handleFile(file);
   };
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-    accept: ".xlsx, .csv",
-  });
+  const handleFileInputChange = (event) => {
+    const file = event.target.files[0];
+    handleFile(file);
+  };
+
+  const handleFile = (file) => {
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        const data = e.target.result;
+        const workbook = XLSX.read(data, { type: "binary" });
+        const sheetName = workbook.SheetNames[0];
+        const sheet = workbook.Sheets[sheetName];
+        const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+        // Initialize selected tags array with empty strings
+        const initialTags = Array(jsonData.length).fill("");
+        setSelectedTags(initialTags);
+
+        setExcelData(jsonData);
+        setShowData(true);
+      };
+
+      reader.readAsBinaryString(file);
+    }
+  };
 
   const handleTagChange = (rowIndex, event) => {
     const newTag = event.target.value;
@@ -50,45 +56,45 @@ const ExcelViewer = () => {
 
   return (
     <div
-      className={`container mx-auto p-6 dropzone ${
-        isDragActive ? "active" : ""
-      } border-dotted border-2 border-[#746fff] relative`}
+      className="container mx-auto p-6 relative"
+      onDrop={handleDrop}
+      onDragOver={(e) => e.preventDefault()}
     >
-      {excelData && (
-        <button
-          onClick={handleRemoveFile}
-          className="absolute top-2 right-2 text-red-600 hover:text-red-800 cursor-pointer"
-        >
-          Remove
-        </button>
-      )}
-
-      <div className="max-w-md mx-auto mb-8 text-center">
+      <div className="max-w-md mx-auto relative mb-8 text-center border-dotted w-fit border-2 border-[#746fff] p-14">
+        {excelData && (
+          <button
+            onClick={handleRemoveFile}
+            className="absolute top-2 right-2 text-red-600 hover:text-red-800 cursor-pointer"
+          >
+            Remove
+          </button>
+        )}
         <img
           src="https://download.logo.wine/logo/Microsoft_Excel/Microsoft_Excel-Logo.wine.png"
           alt="Logo"
-          className="mx-auto  h-16"
+          className="mx-auto h-16"
         />
         <h2 className="text-xl font-bold text-[#746fff]">
-          Drop your Excel file or{" "}
+          Drop your Excel file or
         </h2>
         <p>
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById("fileInput").click();
-            }}
+          <label
+            htmlFor="fileInput"
             className="text-[#746fff] underline cursor-pointer"
           >
             browse
-          </a>
+          </label>
+          <input
+            id="fileInput"
+            type="file"
+            accept=".xlsx, .csv, .xls"
+            style={{ display: "none" }}
+            onChange={handleFileInputChange}
+          />
           <br />
           or drag and drop
         </p>
       </div>
-
-      <input {...getInputProps()} id="fileInput" accept=".xlsx,.csv,.xls" />
 
       {showData && excelData && (
         <div className="mt-8 lg:ml-28">
