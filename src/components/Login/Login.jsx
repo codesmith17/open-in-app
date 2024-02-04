@@ -58,7 +58,7 @@ const Login = () => {
   }, [usernameError]);
   return (
     <>
-      <div className="block md:hidden overflow-hidden">
+      <div className="block md:hidden overflow-hidden max-w-[100vw]">
         <nav className="h-[100px] bg-[#605bff] flex items-center justify-between">
           <div className="flex items-center">
             <div className="my-6 pr-4">
@@ -69,8 +69,8 @@ const Login = () => {
         </nav>
       </div>
       <div className="flex flex-col md:flex-row bg-[#f8faff]">
-        <div className="leftArea hidden md:block relative bg-[#605BFF] h-screen w-[50%] overflow-hidden">
-          <div title="OpenInApp" className="logo m-11  w-fit">
+        <div className="leftArea hidden md:block relative bg-[#605BFF] h-screen md:w-1/2 overflow-hidden">
+          <div title="OpenInApp" className="logo m-11">
             <Logo></Logo>
           </div>
           <div className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] text-5xl font-semibold font-mono text-white transform ">
@@ -144,8 +144,8 @@ const Login = () => {
         <div className="flex items-center bg-[#f8faff] justify-center h-screen mx-auto border-spacing-8 w-[80%] lg:w-[50%] rounded-lg">
           <div className="rightArea relative   p-8">
             <div>
-              <h4 className="text-3xl font-bold mb-4 px-4">Sign In</h4>
-              <p className=" px-4">Sign in to your account</p>
+              <h4 className="text-3xl font-bold mb-4 px-9">Sign In</h4>
+              <p className=" px-9">Sign in to your account</p>
               <div className="flex flex-row w-full justify-center">
                 <button className="mx-auto my-2">
                   <Google></Google>
