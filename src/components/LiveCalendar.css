@@ -1,0 +1,24 @@
+/* LiveCalendar.css */
+
+.live-calendar-container {
+    background-color: #f0f4f8;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+.live-time {
+    color: #1a202c;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.live-date {
+    color: #4a5568;
+    font-size: 16px;
+}
+
+.calendar-container {
+    margin-top: 20px;
+}

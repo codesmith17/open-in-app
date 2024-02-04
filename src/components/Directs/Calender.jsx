@@ -3,6 +3,7 @@ import Sidebar from "../Sidebar";
 import "../style.css";
 import Logocompany from "../Login/Logocompany";
 import { useState, useEffect } from "react";
+import LiveCalendar from "../LiveCalendar";
 const Dashboard1 = () => {
   const [isNavbarVisible, setIsNavbarVisible] = useState(false);
 
@@ -71,6 +72,7 @@ const Dashboard1 = () => {
         <div className="lg:ml-40">
           <div className="bg-[#fafafb] p-8">
             <h1 className="text-2xl font-bold">THE CALENDER PAGE</h1>
+            <LiveCalendar></LiveCalendar>
           </div>
         </div>
       </div>

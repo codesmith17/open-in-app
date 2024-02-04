@@ -71,7 +71,7 @@ const Dashboard1 = () => {
         {/* Main content area */}
         <div className="">
           <div className="bg-[#fafafb] p-8">
-            <h1 className="text-2xl font-bold">Upload CSV</h1>
+            <h1 className="text-2xl font-bold lg:ml-36">Upload CSV</h1>
             <ExcelViewer />
           </div>
         </div>

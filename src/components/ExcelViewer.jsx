@@ -69,13 +69,6 @@ const ExcelViewer = () => {
             browse
           </a>
         </p>
-        <button
-          className="bg-[#746fff] text-white px-4 py-2 rounded mt-2"
-          onClick={handleUpload}
-          disabled={!excelData}
-        >
-          Upload
-        </button>
       </div>
 
       <div
@@ -89,7 +82,7 @@ const ExcelViewer = () => {
       </div>
 
       {showData && excelData && (
-        <div className="mt-8">
+        <div className="mt-8 lg:ml-28">
           <h2>Excel Data:</h2>
           <table className="min-w-full bg-white border border-[#746fff]">
             <thead>
