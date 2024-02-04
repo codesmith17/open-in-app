@@ -57,7 +57,6 @@ const Dashboard1 = () => {
           </div>
         </div>
 
-        {/* Always show the Sidebar on PCs */}
         <div
           className={`${
             isNavbarVisible
