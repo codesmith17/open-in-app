@@ -47,7 +47,12 @@ const ExcelViewer = () => {
   };
 
   return (
-    <div className="container mx-auto p-6">
+    <div
+      {...getRootProps()}
+      className={`container mx-auto p-6 dropzone ${
+        isDragActive ? "active" : ""
+      }`}
+    >
       <div className="max-w-md mx-auto mb-8 text-center">
         <img
           src="https://download.logo.wine/logo/Microsoft_Excel/Microsoft_Excel-Logo.wine.png"
@@ -68,18 +73,12 @@ const ExcelViewer = () => {
           >
             browse
           </a>
+          <br />
+          or drag and drop
         </p>
       </div>
 
-      <div
-        {...getRootProps()}
-        className={`mx-auto dropzone ${isDragActive ? "active" : ""}`}
-      >
-        <input {...getInputProps()} id="fileInput" accept=".xlsx,.csv,.xls" />
-        <p className="text-center">
-          Click here or drag 'n' drop an Excel (.xlsx) file
-        </p>
-      </div>
+      <input {...getInputProps()} id="fileInput" accept=".xlsx,.csv,.xls" />
 
       {showData && excelData && (
         <div className="mt-8 lg:ml-28">

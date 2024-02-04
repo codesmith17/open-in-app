@@ -14,7 +14,17 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState("");
 
   const handleUsername = (e) => {
-    setUsername(e.target.value);
+    const enteredEmail = e.target.value;
+    setUsername(enteredEmail);
+
+    // Email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(enteredEmail)) {
+      setUsernameError("Please enter a valid email address.");
+    } else {
+      setUsernameError("");
+    }
   };
 
   const handlePassword = (e) => {
@@ -48,7 +58,6 @@ const Login = () => {
   useEffect(() => {
     console.log(usernameError);
   }, [usernameError]);
-
   return (
     <>
       <div className="block md:hidden">
