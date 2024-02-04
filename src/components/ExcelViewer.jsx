@@ -8,7 +8,6 @@ const ExcelViewer = () => {
 
   const handleDrop = (event) => {
     event.preventDefault();
-
     const file = event.dataTransfer.files[0];
     handleFile(file);
   };
@@ -29,8 +28,7 @@ const ExcelViewer = () => {
         const sheet = workbook.Sheets[sheetName];
         const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
 
-        // Initialize selected tags array with empty strings
-        const initialTags = Array(jsonData.length).fill("");
+        const initialTags = Array(jsonData.length).fill([]);
         setSelectedTags(initialTags);
 
         setExcelData(jsonData);
@@ -44,7 +42,7 @@ const ExcelViewer = () => {
   const handleTagChange = (rowIndex, event) => {
     const newTag = event.target.value;
     const updatedTags = [...selectedTags];
-    updatedTags[rowIndex] = newTag;
+    updatedTags[rowIndex] = [newTag];
     setSelectedTags(updatedTags);
   };
 
@@ -122,9 +120,22 @@ const ExcelViewer = () => {
                     </td>
                   ))}
                   <td className="py-2 px-4 border border-[#746fff]">
+                    <div className="flex flex-wrap">
+                      {selectedTags[rowIndex] &&
+                        selectedTags[rowIndex].map((tag, tagIndex) => (
+                          <span
+                            key={tagIndex}
+                            className="bg-[#746fff] text-white rounded-full py-1 px-2 mr-2 mb-2"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                    </div>
                     <select
                       className="border-[#746fff] rounded p-1"
-                      value={selectedTags[rowIndex] || ""}
+                      value={
+                        selectedTags[rowIndex] ? selectedTags[rowIndex][0] : ""
+                      }
                       onChange={(e) => handleTagChange(rowIndex, e)}
                     >
                       <option value="" disabled>

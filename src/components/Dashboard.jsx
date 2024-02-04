@@ -68,9 +68,9 @@ const Dashboard1 = () => {
           <Sidebar />
         </div>
 
-        <div className="">
-          <div className="bg-[#fafafb] p-8">
-            <h1 className="text-2xl font-bold lg:ml-36">Upload CSV</h1>
+        <div className="bg-[#fafafb]">
+          <h1 className="text-2xl font-bold lg:ml-48">Upload CSV</h1>
+          <div className="bg-[#fafafb] p-8 w-fit mx-auto">
             <ExcelViewer />
           </div>
         </div>
