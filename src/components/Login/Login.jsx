@@ -71,7 +71,7 @@ const Login = () => {
           </div>
         </nav>
       </div>
-      <div className="flex flex-col md:flex-row bg-gray-100">
+      <div className="flex flex-col md:flex-row bg-[#f8faff]">
         <div className="leftArea hidden md:block relative bg-[#605BFF] h-screen w-[50%]">
           <div title="OpenInApp" className="logo m-11  w-fit">
             <Logo></Logo>
@@ -144,12 +144,12 @@ const Login = () => {
           </div>
         </div>
 
-        <div className="flex items-center bg-gray-100 justify-center h-screen mx-auto border-spacing-8 w-[80%] lg:w-[50%] rounded-lg">
-          <div className="rightArea relative w-full  p-8">
+        <div className="flex items-center bg-[#f8faff] justify-center h-screen mx-auto border-spacing-8 w-[80%] lg:w-[50%] rounded-lg">
+          <div className="rightArea relative   p-8">
             <div>
-              <h4 className="text-3xl font-bold text-center mb-4">Sign In</h4>
-              <p className="text-center">Sign in to your account</p>
-              <div className="flex flex-col w-full justify-center">
+              <h4 className="text-3xl font-bold mb-4">Sign In</h4>
+              <p className="">Sign in to your account</p>
+              <div className="flex flex-row w-full justify-center">
                 <button className="mx-auto my-2">
                   <Google></Google>
                 </button>
@@ -157,13 +157,13 @@ const Login = () => {
                   <Apple></Apple>
                 </button>
               </div>
-              <div className="login-container mt-4">
+              <div className="login-container mt-4 bg-white p-10 rounded-md">
                 <label htmlFor="emailInput">Email address</label>
                 <br />
                 <input
                   type="email"
                   onChange={handleUsername}
-                  className={`bg-[#9d8f8f] rounded-md my-2 p-2 w-full ${
+                  className={`bg-[#f5f5f5] rounded-md my-2 p-2 w-full  ${
                     usernameError && "border-red-500"
                   }`}
                 />
@@ -177,7 +177,7 @@ const Login = () => {
                 <input
                   type="password"
                   onChange={handlePassword}
-                  className={`bg-[#9d8f8f] rounded-md my-2 p-2 w-full ${
+                  className={`bg-[#f5f5f5] rounded-md my-2 p-2 w-full ${
                     passwordError && "border-red-500"
                   }`}
                 />
@@ -198,7 +198,7 @@ const Login = () => {
                     disabled={!username || !password}
                     className={`rounded-md my-8 px-4 w-full py-3 transition-all font-semibold ${
                       !username || !password
-                        ? "text-gray-500 bg-gray-300 cursor-not-allowed"
+                        ? "text-gray-500 bg-[#f8faff] cursor-not-allowed"
                         : "text-white hover:bg-[#343275] bg-[#605BFF] hover:cursor-pointer"
                     }`}
                   >
