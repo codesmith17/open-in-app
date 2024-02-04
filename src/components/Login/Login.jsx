@@ -38,7 +38,7 @@ const Login = () => {
           </div>
         </nav>
       </div>
-      <div className="flex flex-col md:flex-row ">
+      <div className="flex flex-col md:flex-row bg-gray-100">
         <div className="leftArea hidden md:block relative bg-[#605BFF] h-screen w-[50%]">
           <div title="OpenInApp" className="logo m-11  w-fit">
             <Logo></Logo>
@@ -111,17 +111,19 @@ const Login = () => {
           </div>
         </div>
 
-        <div className="flex items-center justify-center h-screen mx-auto border-spacing-8">
-          <div className="rightArea relative w-full bg-gray-100 p-8">
+        <div className="flex items-center bg-gray-100 justify-center h-screen mx-auto border-spacing-8 w-[80%] lg:w-[50%] rounded-lg">
+          <div className="rightArea relative w-full  p-8">
             <div>
               <h4 className="text-3xl font-bold text-center mb-4">Sign In</h4>
               <p className="text-center">Sign in to your account</p>
-              <button className="mx-auto my-2">
-                <Google></Google>
-              </button>
-              <button className="mx-auto my-2">
-                <Apple></Apple>
-              </button>
+              <div className="flex flex-col w-full justify-center">
+                <button className="mx-auto my-2">
+                  <Google></Google>
+                </button>
+                <button className="mx-auto my-2">
+                  <Apple></Apple>
+                </button>
+              </div>
               <div className="login-container mt-4">
                 <label htmlFor="emailInput">Email address</label>
                 <br />

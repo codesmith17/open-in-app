@@ -68,7 +68,7 @@ const Dashboard1 = () => {
         </div>
 
         {/* Main content area */}
-        <div className="ml-40">
+        <div className="lg:ml-40">
           <div className="bg-[#fafafb] p-8">
             <h1 className="text-2xl font-bold">THE NOTIFICATION PAGE</h1>
           </div>

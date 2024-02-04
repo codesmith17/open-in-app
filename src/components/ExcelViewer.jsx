@@ -43,17 +43,14 @@ const ExcelViewer = () => {
   };
 
   const handleUpload = () => {
-    // Add any additional logic here before uploading
-    // For example, you can send the data to a server or perform other operations
     console.log("Uploading data:", excelData);
   };
 
   return (
     <div className="container mx-auto p-6">
       <div className="max-w-md mx-auto mb-8 text-center">
-        {/* Logo goes here */}
         <img
-          src="src\assets\Microsoft_Excel-Logo.wine.png"
+          src="https://download.logo.wine/logo/Microsoft_Excel/Microsoft_Excel-Logo.wine.png"
           alt="Logo"
           className="mx-auto  h-16"
         />
